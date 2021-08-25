@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import Color from '../types/Color'
 import Icon from '../types/Icon'
 import IconListItem from './IconListItem/IconListItem'
 
 interface IconListProps {
   icons: Icon[]
+  selectedColor: Color
 }
 
-const IconList = ({ icons }: IconListProps) => {
+const IconList = ({ icons, selectedColor }: IconListProps) => {
   const [selectedIconsIndex, setSelectedIconsIndex] = useState<number[]>([])
 
   function toggleIndex(index: number) {
@@ -26,6 +28,7 @@ const IconList = ({ icons }: IconListProps) => {
           icon={icon}
           onClick={() => toggleIndex(index)}
           selected={selectedIconsIndex.includes(index)}
+          selectColor={selectedColor}
           key={icon.id}
         />
       ))}
