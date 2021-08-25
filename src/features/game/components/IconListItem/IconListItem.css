@@ -1,0 +1,10 @@
+.icon-list-item {
+  @apply flex align-middle
+        p-5 mb-5
+        
+        cursor-pointer 
+        
+        border rounded 
+        
+        hover:bg-gray-200;
+}
