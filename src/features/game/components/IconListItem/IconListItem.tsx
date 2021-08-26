@@ -2,27 +2,22 @@ import clsx from 'clsx'
 import React from 'react'
 import Color from '../../types/Color'
 import Icon from '../../types/Icon'
+import Token from '../../types/Token'
 import './IconListItem.css'
 
 interface IconListItemProps {
   icon: Icon
-  selected: boolean
-  selectColor: Color
+  token?: Token
   onClick: () => void
 }
 
-const IconListItem = ({
-  icon,
-  onClick,
-  selected,
-  selectColor,
-}: IconListItemProps) => {
+const IconListItem = ({ icon, onClick, token }: IconListItemProps) => {
+  let tokenShape = token?.main ? '?' : '.'
+  let itemColor = token ? `${token.color}-${token.main ? '100' : '50'}` : ''
+
   return (
     <li
-      className={clsx(
-        'icon-list-item',
-        selected && `bg-${selectColor}-100 hover:bg-${selectColor}-100`,
-      )}
+      className={`icon-list-item bg-${itemColor} hover:bg-${itemColor}`}
       onClick={() => onClick()}
     >
       <span className="text-5xl mr-6 w-12">{icon.icon}</span>
@@ -31,7 +26,7 @@ const IconListItem = ({
           <li>{tag}</li>
         ))}
       </ul>
-      {selected ? <span className="ml-auto my-auto">✅</span> : null}
+      {token ? <span className="ml-auto my-auto">{tokenShape}</span> : null}
     </li>
   )
 }

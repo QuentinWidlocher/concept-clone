@@ -1,37 +1,29 @@
 import React, { useState } from 'react'
-import Color from '../types/Color'
 import Icon from '../types/Icon'
+import Token from '../types/Token'
 import IconListItem from './IconListItem/IconListItem'
 
 interface IconListProps {
   icons: Icon[]
-  selectedColor: Color
+  tokens: Token[]
+  onIconClick: (icon: Icon) => void
 }
 
-const IconList = ({ icons, selectedColor }: IconListProps) => {
-  const [selectedIconsIndex, setSelectedIconsIndex] = useState<number[]>([])
-
-  function toggleIndex(index: number) {
-    if (selectedIconsIndex.includes(index)) {
-      // If the index is already selected, we remove the index from the selection
-      setSelectedIconsIndex((indexes) => indexes.filter((i) => i != index))
-    } else {
-      // If the index is not selected, we add it to the selection
-      setSelectedIconsIndex((indexes) => [...indexes, index])
-    }
-  }
-
+const IconList = ({ icons, onIconClick, tokens }: IconListProps) => {
   return (
     <ul>
-      {icons.map((icon, index) => (
-        <IconListItem
-          icon={icon}
-          onClick={() => toggleIndex(index)}
-          selected={selectedIconsIndex.includes(index)}
-          selectColor={selectedColor}
-          key={icon.id}
-        />
-      ))}
+      {icons.map((icon) => {
+        let token: Token | undefined = tokens.find((t) => t.icon.id == icon.id)
+
+        return (
+          <IconListItem
+            icon={icon}
+            onClick={() => onIconClick(icon)}
+            token={token}
+            key={icon.id}
+          />
+        )
+      })}
     </ul>
   )
 }
