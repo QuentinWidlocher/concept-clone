@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       colors: {
         black: colors.gray
+      },
+      boxShadow: {
+        'md-up': '0 -4px 6px -1px rgb(0 0 0 / 10%), 0 -2px 4px -1px rgb(0 0 0 / 6%)'
       }
     },
   },

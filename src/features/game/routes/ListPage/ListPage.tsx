@@ -1,14 +1,17 @@
+import clsx from 'clsx'
 import React, { useState } from 'react'
-import ColorSelector from '../components/ColorSelector/ColorSelector'
-import IconList from '../components/IconList'
-import icons from '../data/icons'
-import Color from '../types/Color'
-import Icon from '../types/Icon'
-import Token from '../types/Token'
+import ColorSelector from '../../components/TokenSelector/ColorSelector/ColorSelector'
+import IconList from '../../components/IconList'
+import icons from '../../data/icons'
+import Color from '../../types/Color'
+import Icon from '../../types/Icon'
+import Token from '../../types/Token'
+import './ListPage.css'
+import TokenSelector from '../../components/TokenSelector/TokenSelector'
 
 const ListPage = () => {
   const [selectedColor, setSelectedColor] = useState<Color>('green')
-  const [mainToken, setMainToken] = useState(true)
+  const [tokenIsMain, setTokenIsMain] = useState(true)
   const [tokens, setTokens] = useState<Token[]>([])
 
   function toggleToken(icon: Icon) {
@@ -19,7 +22,7 @@ const ListPage = () => {
       // Token is main if there is no other token of the same color already placed
       // or if the "main" chekbox is checked, meaning that the player wants to
       // change their main token
-      let main = mainToken || tokens.every((t) => t.color != selectedColor)
+      let main = tokenIsMain || tokens.every((t) => t.color != selectedColor)
 
       // If a token is not placed, we add it to the selection
       let tokenToPlace: Token = {
@@ -44,7 +47,7 @@ const ListPage = () => {
 
         // Changing the main token is a one-time action. We don't let the checkbox checked
         // so the player automatically place normal token after their first one, or after changing
-        setMainToken(false)
+        setTokenIsMain(false)
       }
 
       setTokens([...tokensWithOnlyOneMain, tokenToPlace])
@@ -53,8 +56,8 @@ const ListPage = () => {
 
   return (
     <>
-      <div className="m-10">
-        <h1 className="text-xl mb-5">Icon List</h1>
+      <div className="m-5 mb-16">
+        <h1 className="text-xl text-center mb-5">Concept clone</h1>
 
         <IconList
           icons={icons}
@@ -62,18 +65,12 @@ const ListPage = () => {
           onIconClick={(icon) => toggleToken(icon)}
         />
       </div>
-      <div className="absolute bottom-0 w-full">
-        <ColorSelector
-          selectedColor={selectedColor}
-          onClick={setSelectedColor}
-        />
-        <input
-          type="checkbox"
-          name="main"
-          checked={mainToken}
-          onChange={() => setMainToken((v) => !v)}
-        />
-      </div>
+      <TokenSelector
+        selectedColor={selectedColor}
+        onColorChange={setSelectedColor}
+        selectedShapeIsMain={tokenIsMain}
+        onShapeIsMainChange={setTokenIsMain}
+      />
     </>
   )
 }

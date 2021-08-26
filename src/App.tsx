@@ -1,5 +1,5 @@
 import React from 'react'
-import ListPage from './features/game/routes/ListPage'
+import ListPage from './features/game/routes/ListPage/ListPage'
 
 function App() {
   return (

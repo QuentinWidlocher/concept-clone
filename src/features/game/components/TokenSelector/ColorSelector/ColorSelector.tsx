@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { useState } from 'react'
-import colors from '../../data/colors'
-import Color from '../../types/Color'
+import colors from '../../../data/colors'
+import Color from '../../../types/Color'
 import ColorSelect from './ColorSelect'
 
 interface ColorSelectorProps {

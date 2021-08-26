@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import Color from '../../types/Color'
+import Color from '../../../types/Color'
 
 interface ColorSelectProps {
   color: Color
@@ -13,15 +13,13 @@ const ColorSelect = ({ color, selected, onClick }: ColorSelectProps) => {
     <li
       className={clsx(
         selected
-          ? `bg-${color}-500 text-white -translate-y-2`
-          : `bg-${color}-200 text-${color}-800`,
-        'py-3 w-full flex-1 cursor-pointer text-center transform transition-transform',
-        'hover:-translate-y-2',
+          ? `bg-${color}-500 -translate-y-5`
+          : `bg-${color}-300 -translate-y-0`,
+        'py-6 w-full flex-1 cursor-pointer text-center transform transition-transform',
+        'hover:-translate-y-5',
       )}
       onClick={() => onClick(color)}
-    >
-      {color}
-    </li>
+    ></li>
   )
 }
 

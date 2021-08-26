@@ -20,12 +20,8 @@ const IconListItem = ({ icon, onClick, token }: IconListItemProps) => {
       className={`icon-list-item bg-${itemColor} hover:bg-${itemColor}`}
       onClick={() => onClick()}
     >
-      <span className="text-5xl mr-6 w-12">{icon.icon}</span>
-      <ul className="h-full my-auto">
-        {icon.tags.map((tag) => (
-          <li>{tag}</li>
-        ))}
-      </ul>
+      <span className="text-5xl mr-6 my-auto w-12">{icon.icon}</span>
+
       {token ? <span className="ml-auto my-auto">{tokenShape}</span> : null}
     </li>
   )
