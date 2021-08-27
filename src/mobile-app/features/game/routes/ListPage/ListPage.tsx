@@ -57,7 +57,7 @@ const ListPage = () => {
   return (
     <>
       <div className="m-5 mb-16">
-        <h1 className="text-xl text-center mb-5">Concept clone</h1>
+        <h1 className="text-xl text-center mb-5">Concept clone (Mobile)</h1>
 
         <IconList
           icons={icons}

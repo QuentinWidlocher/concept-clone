@@ -2,7 +2,8 @@
   "name": "concept-clone-mobile",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev:mobile": "vite --config vite-mobile.config.ts",
+    "dev:tv": "vite --config vite-tv.config.ts",
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
