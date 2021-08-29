@@ -4,23 +4,12 @@ import {
   DotShape,
   ExclamationMarkShape,
   QuestionMarkShape,
-} from '../../data/shapes'
+} from '../../../../../shared/data/shapes'
+import { getTokenShape } from '../../../../../shared/helpers/token-helpers'
 import Color from '../../types/Color'
 import Icon from '../../types/Icon'
 import Token from '../../types/Token'
 import './IconListItem.css'
-
-function getTokenShape(token?: Token) {
-  if (token?.main && token?.color == 'green') {
-    // Only the main green token is a "?"
-    return <QuestionMarkShape />
-  } else if (token?.main && token?.color != 'green') {
-    // Main tokens of other colors are "!"
-    return <ExclamationMarkShape />
-  } else {
-    return <DotShape />
-  }
-}
 
 interface IconListItemProps {
   icon: Icon

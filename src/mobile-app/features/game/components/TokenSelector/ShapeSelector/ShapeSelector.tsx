@@ -6,7 +6,7 @@ import {
   DotShape,
   ExclamationMarkShape,
   QuestionMarkShape,
-} from '../../../data/shapes'
+} from '../../../../../../shared/data/shapes'
 
 interface ShapeSelectorProps {
   shapeIsMain: boolean

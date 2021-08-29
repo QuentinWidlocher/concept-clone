@@ -1,4 +1,4 @@
-import Icon from "../types/Icon";
+import Icon from "../../mobile-app/features/game/types/Icon";
 
 const icons: Icon[] = [
     { icon: '📦', tags: ['Object', 'Box'], id: 'box',},
