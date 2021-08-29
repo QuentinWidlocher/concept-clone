@@ -11,10 +11,11 @@ interface ColorSelectorProps {
 
 const ColorSelector = ({ selectedColor, onClick }: ColorSelectorProps) => {
   return (
-    <ul className="flex justify-between">
+    <ul className="flex justify-between align-bottom">
       {colors.map((color) => (
         <ColorSelect
           color={color}
+          key={color}
           selected={color == selectedColor}
           onClick={onClick}
         />

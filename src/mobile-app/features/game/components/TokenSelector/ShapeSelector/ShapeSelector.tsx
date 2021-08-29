@@ -1,15 +1,27 @@
 import clsx from 'clsx'
 import React from 'react'
+import Color from '../../../types/Color'
+import { FaQuestion, FaExclamation } from 'react-icons/fa'
+import {
+  DotShape,
+  ExclamationMarkShape,
+  QuestionMarkShape,
+} from '../../../data/shapes'
 
 interface ShapeSelectorProps {
   shapeIsMain: boolean
+  color: Color
   onShapeChange: (shapeIsMain: boolean) => void
 }
 
-const ShapeSelector = ({ shapeIsMain, onShapeChange }: ShapeSelectorProps) => {
+const ShapeSelector = ({
+  shapeIsMain,
+  onShapeChange,
+  color,
+}: ShapeSelectorProps) => {
   let mainStyle = ''
   let normalStyle = ''
-  let activeStyle = 'font-bold bg-gray-100'
+  let activeStyle = `font-bold text-${color}-900 bg-${color}-100`
 
   if (shapeIsMain) {
     mainStyle = activeStyle
@@ -18,18 +30,22 @@ const ShapeSelector = ({ shapeIsMain, onShapeChange }: ShapeSelectorProps) => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex p-3">
       <button
-        className={clsx('flex-1 p-5', mainStyle)}
+        className={clsx('flex-1 p-5 rounded-l', mainStyle)}
         onClick={() => onShapeChange(true)}
       >
-        ?
+        {color == 'green' ? (
+          <QuestionMarkShape className="m-auto" />
+        ) : (
+          <ExclamationMarkShape className="m-auto" />
+        )}
       </button>
       <button
-        className={clsx('flex-1 p-5', normalStyle)}
+        className={clsx('flex-1 p-5 rounded-r', normalStyle)}
         onClick={() => onShapeChange(false)}
       >
-        .
+        <DotShape className="m-auto" />
       </button>
     </div>
   )

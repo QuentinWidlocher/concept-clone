@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React, { useState } from 'react'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import Color from '../../types/Color'
 import ColorSelector from './ColorSelector/ColorSelector'
 import ShapeSelector from './ShapeSelector/ShapeSelector'
@@ -24,18 +25,23 @@ const TokenSelector = ({
       <div
         className={clsx(
           'drawer transform',
-          showDrawer ? 'translate-y-0' : 'translate-y-32',
+          showDrawer ? 'translate-y-0' : 'translate-y-36',
         )}
       >
         <button
-          className="mx-auto w-full py-3"
+          className="w-full py-3"
           onClick={() => setShowDrawer((v) => !v)}
         >
-          ^
+          {showDrawer ? (
+            <FaAngleDown className="mx-auto" />
+          ) : (
+            <FaAngleUp className="mx-auto" />
+          )}
         </button>
         <ColorSelector selectedColor={selectedColor} onClick={onColorChange} />
-        <span role="separator" className="my-2"></span>
+        <span role="separator" className="mt-2"></span>
         <ShapeSelector
+          color={selectedColor}
           shapeIsMain={selectedShapeIsMain}
           onShapeChange={onShapeIsMainChange}
         />

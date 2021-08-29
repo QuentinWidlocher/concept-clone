@@ -15,7 +15,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      translate: ['hover']
+      translate: ['hover'],
+      height: ['hover'],
+      borderRadius: ['hover']
     },
   },
   plugins: [],
