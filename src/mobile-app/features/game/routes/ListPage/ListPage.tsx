@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ColorSelector from '../../components/TokenSelector/ColorSelector/ColorSelector'
 import IconList from '../../components/IconList'
 import icons from '../../../../../shared/data/icons'
@@ -8,8 +8,14 @@ import Icon from '../../types/Icon'
 import Token from '../../types/Token'
 import './ListPage.css'
 import TokenSelector from '../../components/TokenSelector/TokenSelector'
+import { db } from '../../../../../shared/firebase'
+import { doc, setDoc } from 'firebase/firestore'
 
-const ListPage = () => {
+interface ListPageProps {
+  gameId?: string
+}
+
+const ListPage = ({ gameId }: ListPageProps) => {
   const [selectedColor, setSelectedColor] = useState<Color>('green')
   const [tokenIsMain, setTokenIsMain] = useState(true)
   const [tokens, setTokens] = useState<Token[]>([])
@@ -53,6 +59,12 @@ const ListPage = () => {
       setTokens([...tokensWithOnlyOneMain, tokenToPlace])
     }
   }
+
+  useEffect(() => {
+    if (gameId) {
+      setDoc(doc(db, 'games', gameId), { tokens })
+    }
+  }, [tokens, gameId])
 
   return (
     <>
