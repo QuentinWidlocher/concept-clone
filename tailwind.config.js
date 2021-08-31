@@ -1,7 +1,23 @@
 const colors = require('tailwindcss/colors')
 
+const appColors = [
+  'green',
+  'red',
+  'blue',
+  'black',
+  'yellow'
+]
+
+const colorShades = Object.keys(colors.gray)
+
 module.exports = {
-  purge: ['./index.html', './src/**/*.{ts,tsx}'],
+  purge: {
+    content: ['./index.html', './src/**/*.{ts,tsx}'],
+    // We safelist every color used in the app
+    safelist: [
+      ...appColors.flatMap(color => colorShades.flatMap(shade => [`text-${color}-${shade}`, `bg-${color}-${shade}`]))
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
