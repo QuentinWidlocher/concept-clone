@@ -4,7 +4,8 @@
   "scripts": {
     "dev:mobile": "vite --config vite-mobile.config.ts",
     "dev:tv": "vite --config vite-tv.config.ts",
-    "build": "tsc && vite build",
+    "build:mobile": "tsc && vite build --config vite-mobile.config.ts",
+    "build:tv": "tsc && vite build --config vite-tv.config.ts",
     "serve": "vite preview"
   },
   "dependencies": {
