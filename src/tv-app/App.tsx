@@ -12,9 +12,11 @@ function App() {
   const [tokens, setTokens] = useState([])
 
   useEffect(() => {
+    let id = window.location.pathname.replace('/', '')
+
     // Use the prod/dev modes to use a hard-coded id in dev
     // else use the id provided by the mobile app
-    setGameId('LmAZxJBvP5gegP8FH32W')
+    setGameId(id)
   }, [])
 
   useEffect(() => {

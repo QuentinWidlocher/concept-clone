@@ -9,10 +9,9 @@ function App() {
 
   useEffect(() => {
     // FIXME Use the prod/dev modes to use a hard-coded id in dev
-    // addDoc(games, {}).then((newGame) => {
-    //   setGameId(newGame.id)
-    // })
-    setGameId('LmAZxJBvP5gegP8FH32W')
+    addDoc(games, {}).then((newGame) => {
+      setGameId(newGame.id)
+    })
 
     return () => {
       // FIXME The unmount won't trigger here if the user closes the tab
