@@ -38,8 +38,12 @@ interface DisplayPageProps {
 const DisplayPage = ({ tokens }: DisplayPageProps) => {
   let sortedTokens: TokenByColors = getSortedTokens(tokens)
 
-  return (
-    <div className="h-screen flex">
+  let list = null
+
+  if (tokens.length <= 0) {
+    list = <h1 className="text-xl m-auto">Waiting for the first token...</h1>
+  } else {
+    list = (
       <ul className="flex flex-wrap justify-evenly w-full my-auto">
         {colors
           .filter((c) => (sortedTokens[c]?.length ?? 0) > 0)
@@ -55,8 +59,10 @@ const DisplayPage = ({ tokens }: DisplayPageProps) => {
             </li>
           ))}
       </ul>
-    </div>
-  )
+    )
+  }
+
+  return <div className="h-screen flex">{list}</div>
 }
 
 export default DisplayPage

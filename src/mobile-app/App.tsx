@@ -4,7 +4,7 @@ import '../shared/firebase'
 import { db, games } from '../shared/firebase'
 import { addDoc, deleteDoc, doc, getDocs } from '@firebase/firestore'
 
-function App() {
+function MobileApp() {
   const [gameId, setGameId] = useState('')
 
   useEffect(() => {
@@ -22,4 +22,4 @@ function App() {
   return <div>{gameId ? <ListPage gameId={gameId} /> : null}</div>
 }
 
-export default App
+export default MobileApp

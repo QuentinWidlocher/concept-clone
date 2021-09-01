@@ -1,0 +1,20 @@
+{
+    "name": "Concept Clone",
+    "short_name": "Concept",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A Concept Clone made with React !",
+    "icons": [
+        {
+            "src": "/assets/icons/PWABuilderIcons/firefox/firefox-marketplace-512-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/PWABuilderIcons/firefox/firefox-marketplace-128-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ]
+}

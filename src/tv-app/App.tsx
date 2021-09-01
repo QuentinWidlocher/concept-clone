@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import icons from '../shared/data/icons'
-import Token from '../mobile-app/features/game/types/Token'
 import DisplayPage from './features/display/routes/DisplayPage'
 import '../shared/firebase'
 import { onSnapshot } from '@firebase/firestore'
 import { doc } from 'firebase/firestore'
 import { db } from '../shared/firebase'
+import { useParams } from 'react-router-dom'
 
-function App() {
-  const [gameId, setGameId] = useState('')
+function TvApp() {
+  const { gameId } = useParams<{ gameId: string }>()
   const [tokens, setTokens] = useState([])
-
-  useEffect(() => {
-    let id = window.location.pathname.replace('/', '')
-
-    // Use the prod/dev modes to use a hard-coded id in dev
-    // else use the id provided by the mobile app
-    setGameId(id)
-  }, [])
 
   useEffect(() => {
     if (gameId) {
@@ -37,4 +28,4 @@ function App() {
   )
 }
 
-export default App
+export default TvApp

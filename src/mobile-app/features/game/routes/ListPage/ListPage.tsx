@@ -70,9 +70,15 @@ const ListPage = ({ gameId }: ListPageProps) => {
     <>
       <div className="m-5 mb-16 sm:flex flex-col">
         <h1 className="text-xl text-center mb-5">Concept clone (Mobile)</h1>
-        <a href={`http://localhost:3001/${gameId}`} target="_blank">
+        <a
+          className="bg-green-400 text-white rounded p-3 mx-auto hover:bg-green-600"
+          href={`/${gameId}`}
+          target="_blank"
+        >
           Open the tv app
         </a>
+
+        <div role="separator" className="my-3"></div>
 
         <IconList
           icons={icons}
