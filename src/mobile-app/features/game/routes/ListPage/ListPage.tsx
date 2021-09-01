@@ -68,7 +68,7 @@ const ListPage = ({ gameId }: ListPageProps) => {
 
   return (
     <>
-      <div className="m-5 mb-16">
+      <div className="m-5 mb-16 sm:flex flex-col">
         <h1 className="text-xl text-center mb-5">Concept clone (Mobile)</h1>
 
         <IconList

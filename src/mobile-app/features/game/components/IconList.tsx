@@ -11,7 +11,7 @@ interface IconListProps {
 
 const IconList = ({ icons, onIconClick, tokens }: IconListProps) => {
   return (
-    <ul className="flex flex-wrap justify-evenly">
+    <ul className="grid grid-cols-2 mx-auto">
       {icons.map((icon) => {
         let token: Token | undefined = tokens.find((t) => t.icon.id == icon.id)
 

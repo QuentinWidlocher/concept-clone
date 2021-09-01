@@ -1,5 +1,5 @@
 .icon-list-item {
-  @apply flex flex-1;
+  @apply flex col-span-1;
   @apply align-middle;
   @apply p-5 m-1;
   @apply cursor-pointer;
