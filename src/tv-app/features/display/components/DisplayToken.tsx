@@ -19,6 +19,11 @@ const DisplayToken = ({ token }: DisplayTokenProps) => {
         {getTokenShape(token)}
       </span>
       <span className="ml-5">{token.icon.icon}</span>
+      <ul className="ml-auto">
+        {token.icon.tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
     </div>
   )
 }
