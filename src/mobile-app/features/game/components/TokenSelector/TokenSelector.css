@@ -3,8 +3,3 @@
   @apply bg-white shadow-md-up rounded-t-xl;
   @apply transition-transform;
 }
-
-.drawer-hidden {
-  /* Make the drawer sticks out 3rem from the bottom (whatever its height) */
-  top: calc(100% - 3rem);
-}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import clsx from 'clsx'
+import React, { useEffect, useState } from 'react'
 import Icon from '../../../../shared/types/Icon'
 import Token from '../../../../shared/types/Token'
 import IconListItem from './IconListItem/IconListItem'
@@ -11,7 +12,7 @@ interface IconListProps {
 
 const IconList = ({ icons, onIconClick, tokens }: IconListProps) => {
   return (
-    <ul className="grid grid-cols-2 mx-auto">
+    <ul className={clsx('grid grid-cols-2 mx-auto')}>
       {icons.map((icon) => {
         let token: Token | undefined = tokens.find((t) => t.icon.id == icon.id)
 

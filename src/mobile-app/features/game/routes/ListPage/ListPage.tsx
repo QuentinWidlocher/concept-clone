@@ -1,16 +1,14 @@
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import ColorSelector from '../../components/TokenSelector/ColorSelector/ColorSelector'
 import IconList from '../../components/IconList'
-import icons, { iconsPerPage } from '../../../../../shared/data/icons'
+import { iconsPerPage } from '../../../../../shared/data/icons'
 import Color from '../../../../../shared/types/Color'
 import Icon from '../../../../../shared/types/Icon'
 import Token from '../../../../../shared/types/Token'
-import './ListPage.css'
 import TokenSelector from '../../components/TokenSelector/TokenSelector'
 import { db } from '../../../../../shared/firebase'
 import { doc, setDoc } from 'firebase/firestore'
-import { SwipeEventData, useSwipeable } from 'react-swipeable'
+import { useSwipeable } from 'react-swipeable'
 
 interface ListPageProps {
   gameId?: string
@@ -37,14 +35,20 @@ const ListPage = ({ gameId }: ListPageProps) => {
   const [tokenIsMain, setTokenIsMain] = useState(true)
   const [tokens, setTokens] = useState<Token[]>([])
   const [currentPage, setCurrentPage] = useState(0)
+  const [inTransition, setInTransition] = useState<
+    'left' | 'right' | undefined
+  >(undefined)
+  const [transitionClasses, setTransitionClasses] = useState('')
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       // Swipe to the left, go to the right page
+      setInTransition('right')
       setCurrentPage((currentPage) => changePage(currentPage, 'right'))
     },
     onSwipedRight: () => {
       // Swipe to the right, go to the left page
+      setInTransition('left')
       setCurrentPage((currentPage) => changePage(currentPage, 'left'))
     },
   })
@@ -90,6 +94,20 @@ const ListPage = ({ gameId }: ListPageProps) => {
   }
 
   useEffect(() => {
+    if (!!inTransition) {
+      if (inTransition == 'left') {
+        setTransitionClasses('translate-x-1/2 opacity-0')
+      } else if (inTransition == 'right') {
+        setTransitionClasses('-translate-x-1/2 opacity-0')
+      }
+
+      setTimeout(() => setInTransition(undefined), 100)
+    } else {
+      setTransitionClasses('translate-x-0 opacity-100')
+    }
+  }, [inTransition])
+
+  useEffect(() => {
     if (gameId) {
       setDoc(doc(db, 'games', gameId), { tokens })
     }
@@ -97,7 +115,7 @@ const ListPage = ({ gameId }: ListPageProps) => {
 
   return (
     <>
-      <div className="m-5 mb-16 sm:flex flex-col">
+      <div className="m-5 mb-16 sm:flex flex-col overflow-x-hidden">
         <h1 className="text-xl text-center mb-5">Concept clone (Mobile)</h1>
         <a
           className="bg-green-400 text-white rounded p-3 mx-auto hover:bg-green-600"
@@ -109,7 +127,10 @@ const ListPage = ({ gameId }: ListPageProps) => {
 
         <div role="separator" className="my-3"></div>
 
-        <div {...swipeHandlers}>
+        <div
+          {...swipeHandlers}
+          className={clsx('transform transition-all', transitionClasses)}
+        >
           <IconList
             icons={iconsPerPage[currentPage]}
             tokens={tokens}

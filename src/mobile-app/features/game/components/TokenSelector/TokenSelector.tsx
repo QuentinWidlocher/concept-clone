@@ -4,6 +4,7 @@ import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import Color from '../../../../../shared/types/Color'
 import ColorSelector from './ColorSelector/ColorSelector'
 import ShapeSelector from './ShapeSelector/ShapeSelector'
+import './TokenSelector.css'
 
 interface TokenSelectorProps {
   selectedColor: Color
