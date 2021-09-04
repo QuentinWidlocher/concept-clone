@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import Color from '../../../types/Color'
+import Color from '../../../../../../shared/types/Color'
 
 interface ColorSelectProps {
   color: Color

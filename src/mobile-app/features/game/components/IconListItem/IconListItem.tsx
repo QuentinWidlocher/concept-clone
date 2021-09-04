@@ -6,9 +6,9 @@ import {
   QuestionMarkShape,
 } from '../../../../../shared/data/shapes'
 import { getTokenShape } from '../../../../../shared/helpers/token-helpers'
-import Color from '../../types/Color'
-import Icon from '../../types/Icon'
-import Token from '../../types/Token'
+import Color from '../../../../../shared/types/Color'
+import Icon from '../../../../../shared/types/Icon'
+import Token from '../../../../../shared/types/Token'
 import './IconListItem.css'
 
 interface IconListItemProps {

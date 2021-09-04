@@ -1,4 +1,4 @@
-import colors from "../../../../shared/data/colors"
+import colors from "../data/colors"
 
 type Color = typeof colors[number]
 

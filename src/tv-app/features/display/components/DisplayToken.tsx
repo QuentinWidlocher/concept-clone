@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import Token from '../../../../mobile-app/features/game/types/Token'
+import Token from '../../../../shared/types/Token'
 import { getTokenShape } from '../../../../shared/helpers/token-helpers'
 
 interface DisplayTokenProps {
@@ -18,8 +18,8 @@ const DisplayToken = ({ token }: DisplayTokenProps) => {
       <span className={clsx(token.main ? '' : 'text-2xl my-auto ml-16')}>
         {getTokenShape(token)}
       </span>
-      <span className="ml-5">{token.icon.icon}</span>
-      <ul className="ml-auto">
+      <span className="ml-5 my-auto">{token.icon.icon}</span>
+      <ul className="ml-auto text-2xl">
         {token.icon.tags.map((tag) => (
           <li>{tag}</li>
         ))}

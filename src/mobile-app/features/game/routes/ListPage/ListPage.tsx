@@ -2,10 +2,10 @@ import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import ColorSelector from '../../components/TokenSelector/ColorSelector/ColorSelector'
 import IconList from '../../components/IconList'
-import icons from '../../../../../shared/data/icons'
-import Color from '../../types/Color'
-import Icon from '../../types/Icon'
-import Token from '../../types/Token'
+import icons, { iconsPerPage } from '../../../../../shared/data/icons'
+import Color from '../../../../../shared/types/Color'
+import Icon from '../../../../../shared/types/Icon'
+import Token from '../../../../../shared/types/Token'
 import './ListPage.css'
 import TokenSelector from '../../components/TokenSelector/TokenSelector'
 import { db } from '../../../../../shared/firebase'
@@ -81,7 +81,7 @@ const ListPage = ({ gameId }: ListPageProps) => {
         <div role="separator" className="my-3"></div>
 
         <IconList
-          icons={icons}
+          icons={iconsPerPage}
           tokens={tokens}
           onIconClick={(icon) => toggleToken(icon)}
         />

@@ -1,5 +1,5 @@
 import React from 'react'
-import Token from '../../mobile-app/features/game/types/Token'
+import Token from '../types/Token'
 import {
   QuestionMarkShape,
   ExclamationMarkShape,

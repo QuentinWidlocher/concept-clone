@@ -1,7 +1,7 @@
 import React from 'react'
 import colors from '../../../../shared/data/colors'
-import Color from '../../../../mobile-app/features/game/types/Color'
-import Token from '../../../../mobile-app/features/game/types/Token'
+import Color from '../../../../shared/types/Color'
+import Token from '../../../../shared/types/Token'
 import DisplayToken from '../components/DisplayToken'
 
 type TokenByColors = { [k in Color]?: Token[] }

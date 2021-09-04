@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { useState } from 'react'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
-import Color from '../../types/Color'
+import Color from '../../../../../shared/types/Color'
 import ColorSelector from './ColorSelector/ColorSelector'
 import ShapeSelector from './ShapeSelector/ShapeSelector'
 
