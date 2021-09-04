@@ -10,15 +10,44 @@ import './ListPage.css'
 import TokenSelector from '../../components/TokenSelector/TokenSelector'
 import { db } from '../../../../../shared/firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import { SwipeEventData, useSwipeable } from 'react-swipeable'
 
 interface ListPageProps {
   gameId?: string
+}
+
+function changePage(currentPage: number, way: 'left' | 'right'): number {
+  let nextPage = currentPage
+
+  if (way == 'left') {
+    if (currentPage - 1 >= 0) {
+      nextPage = currentPage - 1
+    }
+  } else {
+    if (currentPage + 1 <= iconsPerPage.length - 1) {
+      nextPage = currentPage + 1
+    }
+  }
+
+  return nextPage
 }
 
 const ListPage = ({ gameId }: ListPageProps) => {
   const [selectedColor, setSelectedColor] = useState<Color>('green')
   const [tokenIsMain, setTokenIsMain] = useState(true)
   const [tokens, setTokens] = useState<Token[]>([])
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      // Swipe to the left, go to the right page
+      setCurrentPage((currentPage) => changePage(currentPage, 'right'))
+    },
+    onSwipedRight: () => {
+      // Swipe to the right, go to the left page
+      setCurrentPage((currentPage) => changePage(currentPage, 'left'))
+    },
+  })
 
   function toggleToken(icon: Icon) {
     if (tokens.some((t) => t.icon.id == icon.id)) {
@@ -80,11 +109,13 @@ const ListPage = ({ gameId }: ListPageProps) => {
 
         <div role="separator" className="my-3"></div>
 
-        <IconList
-          icons={iconsPerPage}
-          tokens={tokens}
-          onIconClick={(icon) => toggleToken(icon)}
-        />
+        <div {...swipeHandlers}>
+          <IconList
+            icons={iconsPerPage[currentPage]}
+            tokens={tokens}
+            onIconClick={(icon) => toggleToken(icon)}
+          />
+        </div>
       </div>
       <TokenSelector
         selectedColor={selectedColor}
